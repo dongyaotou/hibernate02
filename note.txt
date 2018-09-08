@@ -1,0 +1,42 @@
+package: 需要映射的实体类所在包
+class节点
+    name：对应的是实体类的类名，如果没有书写package,则必须是完整限定类名
+     table：数据库中的表名，如果表名和实体类名一致，可以省略
+     id节点：  表中的主键
+
+
+
+
+ generator：主键生成策略
+            assigned：主键是由程序猿自己设置的！
+            identity: 针对于mysql数据库的主键自增 （mysql数据库说了算）
+            sequence: 针对于oracle数据库中的序列
+                <generator class="sequence">
+                  <param name="sequence">序列名称</param>
+               </generator>
+           increment: 首先会产生一条sql select max(id)  from teacher
+                      之后id+1  赋值给主键
+   name：  必须和实体类中的属性名一致
+   column ： 必须和数据库中的列名一致，如果列名和属性名一致，可以省略
+
+其中lazy表示的是懒加载，，和之前学习的mybatis框架是一样的
+
+重点：
+ * Hibernate中核心的一个类和五个接口
+     *
+     * 一个类：
+     * Configuration ： 读取核心配置文件
+     *
+     * 五个接口:
+     * 01.SessionFactory : 负责初始化Hibernate.cfg.xml文件中所有的配置信息
+     *                      在程序中有一个就够啦！ 使用单例模式！
+     * 02.Session  ： 是hibernate中用来创建事务以及对对象的增删改查操作！
+     * 03.Transaction ：事务的管理
+     * 04.Query  ：   sql ,hql
+     * 05.Criteria  ：  完全面向对象！
+     */
+
+     注：hibernate没有自动提交事务
+     mysql在默认情况下是自动提交事务的
+
+
